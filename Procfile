@@ -1,1 +1,1 @@
-clock: python clock.py
+test: python test.py
