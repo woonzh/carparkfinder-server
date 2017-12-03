@@ -1,1 +1,1 @@
-test: python test.py
+scheduler: python scheduler.py
