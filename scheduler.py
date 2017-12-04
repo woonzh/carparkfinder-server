@@ -17,6 +17,10 @@ sched = BlockingScheduler()
 @sched.scheduled_job('cron', day_of_week='tue', hour=1)
 def scheduled_job():
     msg=ucd.main()
-    print(msg[0]+'\n'+'This job is run every Tuesday at 1am.')
+    text=''
+    if len(msg)>0:
+        text=msg[0]
+    
+    print(text+'\n'+'This job is run every Tuesday at 1am.')
 
 sched.start()
