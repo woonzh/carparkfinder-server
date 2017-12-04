@@ -7,8 +7,10 @@ Created on Sun Dec  3 12:01:27 2017
 
 import pandas as pd
 import carparkfuncs as of
+import time
 
 def main():
+    start= time.time()
     cpinfo=of.jsonRetriever('https://data.gov.sg/api/action/datastore_search?resource_id=139a3035-e624-4f56-b63f-89ae28d4ae4c&limit=2000'
                             ,'api-key'
                             ,'lT4tVeyqPFXK4SChuNN0jzx6O11Dq6nF')
@@ -29,6 +31,9 @@ def main():
     
     cpclean, summary=of.removeNullRows(cp)
     
+    t1=time.time()
+    print('Process API time: '+str(t1-start)+' secs')
+    
     lat=[]
     lng=[]
     for ind in range(len(cpclean)):
@@ -45,6 +50,9 @@ def main():
     
     cpclean2.drop(['type_of_parking_system', 'x_coord', 'y_coord'], axis=1,inplace=True)
     
+    t2=time.time()
+    print('Google Maps time: '+str(t2-t1)+' secs')
+    
     df=[tuple(x) for x in cpclean2.values]
     
     url="postgres://tmlzqhgujcsokr:2eded1d0ad12f58a6ff45a35fb68bc323465f8b3b1b28f147660d6a7bd3216b1@ec2-54-221-244-196.compute-1.amazonaws.com:5432/d43e472aa1ptv7"
@@ -55,4 +63,9 @@ def main():
     
     msg=of.updateDB(url,delsql, sql,df,False)
     
+    t3=time.time()
+    print('Update database time: '+str(t3-t2)+' secs')
+    
     return msg
+
+msg=main()
