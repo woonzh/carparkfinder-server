@@ -26,7 +26,17 @@ def main():
     cpinfo2=pd.DataFrame(pd.io.json.json_normalize(cpava)['carpark_number'])
     cpinfo2.columns=['car_park_no']
     
+    cpCapacity=pd.DataFrame(columns=['car_park_no','lots avail', 'total lots', 'percen full'])
+    
+    for res in range(len(cpava)):
+        df=cpava[res]
+        df2=df['carpark_info'][0]
+        percen=(int(df2['lots_available'])/int(df2['total_lots']))*100
+        cpCapacity.loc[res]=([df['carpark_number'],df2['lots_available'],df2['total_lots'],percen])
+    
     cp=cpinfo2.merge(cpinfo, on='car_park_no', how='left')
+    cp=cp.drop_duplicates()
+    cp=cp.merge(cpCapacity, on='car_park_no', how='left')
     cp=cp.drop_duplicates()
     
     cpclean, summary=of.removeNullRows(cp)
@@ -37,8 +47,13 @@ def main():
     lat=[]
     lng=[]
     for ind in range(len(cpclean)):
-        add=cpclean.iloc[ind,1]
-        latv, lngv=of.coordRet(add)
+#        add=cpclean.iloc[ind,1]
+#        latv, lngv=of.coordRet(add)
+
+        latv= 3.456
+        lngv= 4.545
+        
+
         lat.append(latv)
         lng.append(lngv)
         
@@ -59,7 +74,7 @@ def main():
     
     delsql = """DELETE FROM cp_info"""
     sql = """INSERT INTO cp_info
-                 VALUES(%s,%s,%s,%s,%s,%s,%s,%s);"""
+                 VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"""
     
     msg=of.updateDB(url,delsql, sql,df,False)
     
