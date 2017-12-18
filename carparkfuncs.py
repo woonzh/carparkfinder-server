@@ -123,6 +123,22 @@ def connectToDatabase(url):
     cur=conn.cursor()
     
     return cur, conn
+
+def updateCapacity(url,query,data, retMsg):
+    msg=''
+    try:
+        cur, conn=connectToDatabase(url)
+        
+        cur.executemany(query, data)
+        if retMsg:
+            msg=cur.fetchone()
+            
+        cur.close()
+        conn.commit()
+    except ps.Error as e:
+        msg=e.pgerror
+    
+    return msg
     
 def updateDB(url, delQuery, query, data, retMsg):
     msg=[]
