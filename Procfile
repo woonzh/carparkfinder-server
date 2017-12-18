@@ -1,3 +1,3 @@
 scheduler: python clock.py
 
-api: python api.py
+web: gunicorn flask_rest_service:api

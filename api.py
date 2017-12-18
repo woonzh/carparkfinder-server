@@ -13,7 +13,7 @@ app = Flask(__name__)
 api = Api(app)
 
 class Carpark(Resource):
-    def get(self):
+    def post(self):
         url="postgres://tmlzqhgujcsokr:2eded1d0ad12f58a6ff45a35fb68bc323465f8b3b1b28f147660d6a7bd3216b1@ec2-54-221-244-196.compute-1.amazonaws.com:5432/d43e472aa1ptv7"
         cur, conn = of.connectToDatabase(url)
         
@@ -28,8 +28,7 @@ class Carpark(Resource):
         return msg
     
 #t= Carpark
-#msg=t.get('')
-#df=json.load()
+#msg=t.post('')
     
 api.add_resource(Carpark, '/carpark') # Route_1
 #
