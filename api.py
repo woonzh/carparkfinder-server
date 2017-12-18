@@ -34,4 +34,4 @@ class Carpark(Resource):
 api.add_resource(Carpark, '/carpark') # Route_1
 #
 if __name__ == '__main__':
-     app.run(port=5432)
+     app.run(debug=True)

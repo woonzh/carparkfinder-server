@@ -16,8 +16,8 @@ db = SQLAlchemy(app)
 
 @app.route("/carpark", methods=["POST"])
 def post_to_db():
-    return 'Success! To enter more data, <a href="{}">click here!</a>'.format(url_for("enter_data"))
+    return 'Success!'
 
 if __name__ == '__main__':
     #app.debug = True
-    app.run()
+    app.run(debug=True)
