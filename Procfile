@@ -1,3 +1,3 @@
-scheduler: python scheduler.py
+scheduler: python clock.py
 
 api: python api.py

@@ -7,10 +7,7 @@ Created on Sun Dec 17 15:00:01 2017
 
 from flask import Flask, request
 from flask_restful import Resource, Api
-from sqlalchemy import create_engine
-import json
 import carparkfuncs as of
-import pandas as pd
 
 app = Flask(__name__)
 api = Api(app)
@@ -30,9 +27,9 @@ class Carpark(Resource):
         
         return msg
     
-t= Carpark
-msg=t.get('')
-df=json.load()
+#t= Carpark
+#msg=t.get('')
+#df=json.load()
     
 api.add_resource(Carpark, '/carpark') # Route_1
 #
