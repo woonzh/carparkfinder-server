@@ -22,5 +22,14 @@ def scheduled_job():
         text=msg[0]
     
     print(text+'\n'+'This job is run every Tuesday at 1am.')
+    
+@sched.scheduled_job('interval', minute=1)
+def scheduled_job():
+    msg=ucd.main()
+    text=''
+    if len(msg)>0:
+        text=msg[0]
+    
+    print(text+'\n'+'This job is run every Tuesday at 1am.')
 
 sched.start()
