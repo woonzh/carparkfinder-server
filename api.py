@@ -22,6 +22,7 @@ class Carpark(Resource):
         cur.execute(query)
         msg=cur.fetchall()
         
+        colnames = [desc[0] for desc in cur.description]
         df=[]
 
         for ent in msg:
@@ -37,10 +38,10 @@ class Carpark(Resource):
         
         return jsonDf
 
-t= Carpark
-msg=t.post('')
+#t= Carpark
+#msg=t.post('')
     
-#api.add_resource(Carpark, '/carpark') # Route_1
-#
-#if __name__ == '__main__':
-#     app.run(debug=True)
+api.add_resource(Carpark, '/carpark') # Route_1
+
+if __name__ == '__main__':
+     app.run(debug=True)
