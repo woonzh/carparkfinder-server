@@ -32,16 +32,17 @@ class Carpark(Resource):
             
             df.append(tstr)
         
-        jsonDf = json.dumps(df) 
+#        jsonDf = json.dumps(df)
+#        strDf = str(df)
         
         cur.close()
         
-        return jsonDf
+        return df
 
-#t= Carpark
-#msg=t.post('')
+t= Carpark
+msg=t.post('')
     
-api.add_resource(Carpark, '/carpark') # Route_1
-
-if __name__ == '__main__':
-     app.run(debug=True)
+#api.add_resource(Carpark, '/carpark') # Route_1
+#
+#if __name__ == '__main__':
+#     app.run(debug=True)
