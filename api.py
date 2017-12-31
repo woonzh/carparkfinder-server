@@ -29,6 +29,8 @@ class Carpark(Resource):
             tstr={}
             for i in range(len(ent)):
                 tstr[colnames[i]]=ent[i]
+                
+            tstr={'carpark':tstr}
             
             df.append(tstr)
         
