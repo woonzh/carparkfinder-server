@@ -40,13 +40,13 @@ class Carpark(Resource):
         
         return json.dumps(df2)
 
-t= Carpark
-msg=t.post('')
+#t= Carpark
+#msg=t.post('')
 
 #d={'test':'tt'}
-df=json.loads(msg)
+#df=json.loads(msg)
     
-#api.add_resource(Carpark, '/carpark') # Route_1
-#
-#if __name__ == '__main__':
-#     app.run(debug=True)
+api.add_resource(Carpark, '/carpark') # Route_1
+
+if __name__ == '__main__':
+     app.run(debug=True)
