@@ -33,13 +33,13 @@ class Carpark(Resource):
             df.append(tstr)
 #            df += 'carpark:'+ str(tstr) +','
 
-        df2={}
-        df2["carparks"]=str(df)
+#        df2={}
+#        df2["carparks"]=str(df)
         
         cur.close()
         
-        return json.dumps(df2)
-
+        return json.dumps(df)
+#
 #t= Carpark
 #msg=t.post('')
 
