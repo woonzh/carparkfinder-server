@@ -38,7 +38,7 @@ class Carpark(Resource):
         
         cur.close()
         
-        return json.dumps(df2)
+        return str(df2)
 
 #t= Carpark
 #msg=t.post('')
