@@ -30,21 +30,24 @@ class Carpark(Resource):
             for i in range(len(ent)):
                 tstr[colnames[i]]=ent[i]
                 
-            tstr={'carpark':tstr}
+#            tstr={'carpark':tstr}
+            
+#            df += 'carpark:'+ str(tstr) +','
             
             df.append(tstr)
         
 #        jsonDf = json.dumps(df)
-#        strDf = str(df)
+        strDf = str(df)
+#        df='{'+df+'}'
         
         cur.close()
         
-        return df
+        return strDf
 
-#t= Carpark
-#msg=t.post('')
+t= Carpark
+msg=t.post('')
     
-api.add_resource(Carpark, '/carpark') # Route_1
-
-if __name__ == '__main__':
-     app.run(debug=True)
+#api.add_resource(Carpark, '/carpark') # Route_1
+#
+#if __name__ == '__main__':
+#     app.run(debug=True)
