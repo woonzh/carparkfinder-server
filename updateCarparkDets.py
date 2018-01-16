@@ -37,7 +37,7 @@ def main():
     cp=cpinfo2.merge(cpinfo, on='car_park_no', how='left')
     cp=cp.drop_duplicates()
     cp=cp.merge(cpCapacity, on='car_park_no', how='left')
-    cp=cp.drop_duplicates()
+    cp=cp.drop_duplicates(subset=['car_park_no'])
     
     cpclean, summary=of.removeNullRows(cp)
     
@@ -47,13 +47,12 @@ def main():
     lat=[]
     lng=[]
     for ind in range(len(cpclean)):
-#        add=cpclean.iloc[ind,1]
-#        latv, lngv=of.coordRet(add)
-
-        latv= 3.456
-        lngv= 4.545
+        add=cpclean.iloc[ind,1]
+        latv, lngv=of.coordRet(add)
+    
+    #        latv= 3.456
+    #        lngv= 4.545
         
-
         lat.append(latv)
         lng.append(lngv)
         

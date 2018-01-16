@@ -7,6 +7,7 @@ Created on Sun Nov 26 18:28:55 2017
 
 from apscheduler.schedulers.blocking import BlockingScheduler
 import updateCarparkDets as ucd
+import carparkactual as cpa
 
 sched = BlockingScheduler()
 
@@ -14,16 +15,7 @@ sched = BlockingScheduler()
 #def timed_job():
 #    print('This job is run every week.')
 
-@sched.scheduled_job('cron', day_of_week='tue', hour=1)
-def scheduled_job():
-    msg=ucd.main()
-    text=''
-    if len(msg)>0:
-        text=msg[0]
-    
-    print(text+'\n'+'This job is run every Tuesday at 1am.')
-    
-#@sched.scheduled_job('interval', minute=1)
+#@sched.scheduled_job('cron', day_of_week='tue', hour=1)
 #def scheduled_job():
 #    msg=ucd.main()
 #    text=''
@@ -31,5 +23,14 @@ def scheduled_job():
 #        text=msg[0]
 #    
 #    print(text+'\n'+'This job is run every Tuesday at 1am.')
+    
+@sched.scheduled_job('interval', minute=1)
+def scheduled_job():
+    msg=cpa.main()
+    text=''
+    if len(msg)>0:
+        text=msg[0]
+    
+    print(text+'\n'+'This job runs every minute.')
 
 sched.start()

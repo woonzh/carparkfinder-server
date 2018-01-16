@@ -42,8 +42,6 @@ class Carpark(Resource):
 #
 #t= Carpark
 #msg=t.post('')
-
-#d={'test':'tt'}
 #df=json.loads(msg)
     
 api.add_resource(Carpark, '/carpark') # Route_1
