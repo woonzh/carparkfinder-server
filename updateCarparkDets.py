@@ -44,42 +44,43 @@ def main():
     t1=time.time()
     print('Process API time: '+str(t1-start)+' secs')
     
-    lat=[]
-    lng=[]
-    for ind in range(len(cpclean)):
-        add=cpclean.iloc[ind,1]
-        latv, lngv=of.coordRet(add)
+#    lat=[]
+#    lng=[]
+#    for ind in range(len(cpclean)):
+#        add=cpclean.iloc[ind,1]
+#        latv, lngv=of.coordRet(add)
+#    
+#    #        latv= 3.456
+#    #        lngv= 4.545
+#        
+#        lat.append(latv)
+#        lng.append(lngv)
+#        
+#    cpclean['lat']=lat
+#    cpclean['lng']=lng
+#    
+#    cpclean2, summary2= of.removeNullRows(cpclean)
+#    cpclean2.reset_index()
+#    
+#    cpclean2.drop(['type_of_parking_system', 'x_coord', 'y_coord'], axis=1,inplace=True)
+#    
+#    t2=time.time()
+#    print('Google Maps time: '+str(t2-t1)+' secs')
+#    
+#    df=[tuple(x) for x in cpclean2.values]
+#    
+#    url="postgres://tmlzqhgujcsokr:2eded1d0ad12f58a6ff45a35fb68bc323465f8b3b1b28f147660d6a7bd3216b1@ec2-54-221-244-196.compute-1.amazonaws.com:5432/d43e472aa1ptv7"
+#    
+#    delsql = """DELETE FROM cp_info"""
+#    sql = """INSERT INTO cp_info
+#                 VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"""
+#    
+#    msg=of.updateDB(url,delsql, sql,df,False)
+#    
+#    t3=time.time()
+#    print('Update database time: '+str(t3-t2)+' secs')
     
-    #        latv= 3.456
-    #        lngv= 4.545
-        
-        lat.append(latv)
-        lng.append(lngv)
-        
-    cpclean['lat']=lat
-    cpclean['lng']=lng
-    
-    cpclean2, summary2= of.removeNullRows(cpclean)
-    cpclean2.reset_index()
-    
-    cpclean2.drop(['type_of_parking_system', 'x_coord', 'y_coord'], axis=1,inplace=True)
-    
-    t2=time.time()
-    print('Google Maps time: '+str(t2-t1)+' secs')
-    
-    df=[tuple(x) for x in cpclean2.values]
-    
-    url="postgres://tmlzqhgujcsokr:2eded1d0ad12f58a6ff45a35fb68bc323465f8b3b1b28f147660d6a7bd3216b1@ec2-54-221-244-196.compute-1.amazonaws.com:5432/d43e472aa1ptv7"
-    
-    delsql = """DELETE FROM cp_info"""
-    sql = """INSERT INTO cp_info
-                 VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s);"""
-    
-    msg=of.updateDB(url,delsql, sql,df,False)
-    
-    t3=time.time()
-    print('Update database time: '+str(t3-t2)+' secs')
-    
-    return msg
+#    return msg
+    return cpclean
 
 msg=main()
